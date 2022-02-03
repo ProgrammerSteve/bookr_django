@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+<br/>
+<h4>Book Details</h4>
+<hr/>
+<ul class="list-group">
+    <li>
+        <span class="text-info">
+            Title:
+        </span>
+        <span>
+            {{Book}}
+        </span>
+    </li>
+    <li>
+        <span class="text-info">
+            Publisher:
+        </span>
+        <span>
+            {{publisher}}
+        </span>
+    </li>
+     <li>
+        <span class="text-info">
+            Publication Date:
+        </span>
+        <span>
+            {{publication_date}}
+        </span>
+    </li>
+     <li>
+        <span class="text-info">
+            rating:
+        </span>
+        <span>
+            {{rating}}/5
+        </span>
+    </li>
+</ul>
+<hr/>
+
+
+
+
+
+<br/>
+<h4 class="text-info">Review Comments({{number_of_reviews}})</h4>
+<a href="../">[hide comments]</a><br/>
+{% if not reviews %}
+    <hr>
+    <h3>Be the first one to write a review.</h3>
+{% else %}
+
+
+
+<ul>
+{% for review in reviews %}
+    <li class="list-group-item">
+        <span class="text-info">
+            {{review.creator}}<br/>
+        </span>
+        <span>
+            Rating: {{review.rating}}<br/>
+            {% if not review.date_edited %}
+                Created: {{review.date_created}}
+            {% else %}
+                Created: {{review.date_created}}<br/><em>(edited) {{review.date_edited}}</em>
+            {% endif %}
+            <br/><br/>
+        </span>
+        <span class="list-group-item">
+            <em>{{review.content}}</em>
+        </span>
+    </li>
+{% endfor %}
+</ul>
+
+{% endif %}
+{% endblock %}
+
+
+<!--    context = {-->
+<!--        'reviews': reviews,-->
+<!--        'reviews_creation_date': reviews_creation_date,-->
+<!--        'reviews_edit_date': reviews_edit_date,-->
+<!--        'reviews_creators': reviews_creators,-->
+<!--    }-->

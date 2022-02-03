@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<br/>
+<h4>Book Details</h4>
+<hr/>
+<ul class="list-group">
+    <li>
+        <span class="text-info">
+            Title:
+        </span>
+        <span>
+            {{Book}}
+        </span>
+    </li>
+    <li>
+        <span class="text-info">
+            Publisher:
+        </span>
+        <span>
+            {{publisher}}
+        </span>
+    </li>
+     <li>
+        <span class="text-info">
+            Publication Date:
+        </span>
+        <span>
+            {{publication_date}}
+        </span>
+    </li>
+     <li>
+        <span class="text-info">
+            rating:
+        </span>
+        <span>
+            {% if not reviews %}
+            na
+            {% else %}
+            {{rating}}/5
+            {% endif %}
+        </span>
+    </li>
+</ul>
+<hr/>
+
+{% if not reviews %}
+    <hr>
+    <h3>Be the first one to write a review.</h3>
+{% else %}
+<a class="btn btn-primary"
+   href="reviews"
+   role="button"
+>
+    View Reviews: {{number_of_reviews}}
+</a>
+{% endif %}
+
+{% endblock %}
